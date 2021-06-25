@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 
 
@@ -10,5 +10,10 @@ def hello_world(request):
 def hi(request):
     # import pdb
     #  pdb.set_trace()
-    numbers = request.GET['numbers']
-    return HttpResponse(numbers)
+    numbers = [int(i) for i in request.GET['numbers'].split(',')]
+    sorted_numbers = sorted(numbers)
+    data = {
+        'status': 'ok',
+        'data': sorted_numbers
+    }
+    return JsonResponse(data, safe=False)
