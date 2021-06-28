@@ -19,7 +19,8 @@ class User(models.Model):
         blank=True
     )
     birthdate = models.DateField(
-        blank=True, null=True
+        blank=True,
+        null=True
     )
     created = models.DateTimeField(
         auto_now_add=True
